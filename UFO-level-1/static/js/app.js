@@ -16,25 +16,25 @@ function displayData(data){
     })
 })}
 
+
 displayData(tableData)
 
 //select the web user's input and the filter button
 var dateInputText = d3.select("#datetime")
-var button = d3.select("filter-btn")
+var button = d3.select(".btn")
 
-// filter data with date that the user inputs
-function clickSelect(){
-    //don't refresh the page!
-    d3.event.preventDefault();
-    //print the value that was input
+button.on("click",function (){
+    console.log("this is a test")
     console.log(dateInputText.property("value"));
-    //create a new table showing only the filterd data
-    var new_table = tableData.filter(sighting => sighting.datetime===dateInputText.property("value"))
-    //display the new table
-    displayData(new_table);
-}
+    if (dateInputText.property("value") === "") {
+        console.log(tableData)
+        console.log(displayData(tableData))
+    }
+    else {
+        var new_table = tableData.filter(sighting => sighting.datetime === dateInputText.property('value'))
+        displayData(new_table)
+    }
+})
 
-// event listener to handle change and click
-dateInputText.on("change", clickSelect)
 
 
